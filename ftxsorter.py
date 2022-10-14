@@ -77,13 +77,10 @@ def main():
 	lanes2s = generate_lanes(create_forest(), 6, 4700, 3200)
 	lanes1s = generate_lanes(create_forest(), 6, 4000, 3000)
 	with open("lanes3.csv", "a") as f:
-		f.write(f"Cadet, Start Point,1,2,3,4,5,6,7,8,Solution,1,2,3,4,5,6,7,8\n")
 		write_csv(f, lanes3s)
 	with open("lanes2.csv", "a") as f:
-		f.write(f"Cadet, Start Point,1,2,3,4,5,6,Solution,1,2,3,4,5,6\n")
 		write_csv(f, lanes2s)
 	with open("lanes1.csv", "a") as f:
-		f.write(f"Cadet, Start Point,1,2,3,4,5,6,Solution,1,2,3,4,5,6\n")
 		write_csv(f, lanes1s)
 
 
@@ -93,6 +90,13 @@ def write_csv(f, lanes: list[tuple[list[str], int]]) -> None:
 	:param f: the TextIO Object
 	:param lanes: the list of point
 	"""
+	f.write("Cadet,Start Point,")
+	for i in range(1, len(lanes[0][0])):
+		f.write(f"{i},")
+	f.write("Solution")
+	for i in range(1, len(lanes[0][0])):
+		f.write(f",{i}")
+	f.write("\n")
 	for lane in lanes:
 		for point in lane[0]:
 			p = point.split(' - ')
