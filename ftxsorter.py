@@ -76,24 +76,31 @@ def main():
 	lanes3s = generate_lanes(create_forest(), 8, 5000, 3500)
 	lanes2s = generate_lanes(create_forest(), 6, 4700, 3200)
 	lanes1s = generate_lanes(create_forest(), 6, 4000, 3000)
-	with open("lanes3.csv", "w") as f:
-		f.write(f"Cadet, Start Point,1,2,3,4,5,6,7,8\n")
-		for lane in lanes3s:
-			for point in lane[0]:
-				f.write(f",{point.split(' - ')[1]}")
-			f.write("\n")
-	with open("lanes2.csv", "w") as f:
-		f.write(f"Cadet, Start Point,1,2,3,4,5,6\n")
-		for lane in lanes2s:
-			for point in lane[0]:
-				f.write(f",{point.split(' - ')[1]}")
-			f.write("\n")
-	with open("lanes1.csv", "w") as f:
-		f.write(f"Cadet, Start Point,1,2,3,4,5,6\n")
-		for lane in lanes1s:
-			for point in lane[0]:
-				f.write(f",{point.split(' - ')[1]}")
-			f.write("\n")
+	with open("lanes3.csv", "a") as f:
+		f.write(f"Cadet, Start Point,1,2,3,4,5,6,7,8,Solution,1,2,3,4,5,6,7,8\n")
+		write_csv(f, lanes3s)
+	with open("lanes2.csv", "a") as f:
+		f.write(f"Cadet, Start Point,1,2,3,4,5,6,7,8,Solution,1,2,3,4,5,6\n")
+		write_csv(f, lanes2s)
+	with open("lanes1.csv", "a") as f:
+		f.write(f"Cadet, Start Point,1,2,3,4,5,6,7,8,Solution,1,2,3,4,5,6\n")
+		write_csv(f, lanes1s)
+
+
+def write_csv(f, lanes: list[tuple[list[str], int]]) -> None:
+	"""
+	Write lanes to the csv file
+	:param f: the TextIO Object
+	:param lanes: the list of point
+	"""
+	for lane in lanes:
+		for point in lane[0]:
+			p = point.split(' - ')
+			f.write(f",{p[1]}")
+		for point in lane[0]:
+			p = point.split(' - ')
+			f.write(f",{p[0]}")
+		f.write("\n")
 
 
 def generate_lanes(nodes: dict[str, Node], hops: int, max_len: int, min_len: int) -> list[tuple[list[str], int]]:
