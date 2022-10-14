@@ -80,10 +80,10 @@ def main():
 		f.write(f"Cadet, Start Point,1,2,3,4,5,6,7,8,Solution,1,2,3,4,5,6,7,8\n")
 		write_csv(f, lanes3s)
 	with open("lanes2.csv", "a") as f:
-		f.write(f"Cadet, Start Point,1,2,3,4,5,6,7,8,Solution,1,2,3,4,5,6\n")
+		f.write(f"Cadet, Start Point,1,2,3,4,5,6,Solution,1,2,3,4,5,6\n")
 		write_csv(f, lanes2s)
 	with open("lanes1.csv", "a") as f:
-		f.write(f"Cadet, Start Point,1,2,3,4,5,6,7,8,Solution,1,2,3,4,5,6\n")
+		f.write(f"Cadet, Start Point,1,2,3,4,5,6,Solution,1,2,3,4,5,6\n")
 		write_csv(f, lanes1s)
 
 
